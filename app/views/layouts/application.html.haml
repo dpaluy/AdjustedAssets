@@ -1,21 +1,35 @@
 !!!
 %html
   %head
-    %title Adjustedassets
+    %title= content_for?(:title) ? yield(:title) : "Adjusted Assets"
     %meta{:charset => "utf-8"}
     %meta{"http-equiv" => "X-UA-Compatible", :content => "IE=edge,chrome=1"}
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1"}
     = stylesheet_link_tag :application
     = javascript_include_tag :application
     = csrf_meta_tags
+    = yield(:head)
+  
   %body{:class => params[:controller]}
-    #container.container
-      %header
-        %nav
-          %ul.hmenu
-            = render 'shared/navigation'
-        - flash.each do |name, msg|
-          = content_tag :div, msg, :id => "flash_\#{name}" if msg.is_a?(String)
-      #main{:role => "main"}
-        = yield
+    .topbar
+      .fill
+        .container
+          .brand
+            = link_to "Adjusted Assets", root_path
+          
+          = render 'shared/navigation'
+  
+          - flash.each do |name, msg|
+            = content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String)
+            
+    .container
+      .content
+        - if show_title?
+          .page-header
+            %h1= content_for?(:title) ? yield(:title) : ""
+        .row          
+          .span14
+            = yield
       %footer
+        %p Copyright &copy; 2010, Ezov Creative Solution LTD.        
+        
