@@ -1,0 +1,36 @@
+h1. Adjusted Assets
+
+TBD
+
+h2. Dependencies
+
+To use this application, you will need:
+
+* The Ruby language (version 1.9.2 or 1.9.3)
+* Rails (version 3.1.3 or newer)
+
+h2. Production Setup
+
+h3. Set up *action_mailer* in your production environment in the file *config/environments/production.rb* by adding:
+
+@config.action_mailer.default_url_options = { :host => 'yourhost.com' }@
+@config.action_mailer.delivery_method = :smtp@
+@config.action_mailer.perform_deliveries = true@
+@config.action_mailer.raise_delivery_errors = false@
+@config.action_mailer.default :charset => "utf-8"@
+
+h2. Contributing
+
+If you make improvements to this application, please share with others.
+
+* Fork the project on GitHub.
+* Make your feature addition or bug fix.
+* Commit with Git.
+* Send the author a pull request.
+
+If you add functionality to this application, create an alternative implementation, or build an application that is similar, please contact me and I'll add a note to the README so that others can find your work.
+
+h2. License
+
+Copyright © 2011 Ezov Creative Solution LTD.
+
