@@ -21,7 +21,7 @@ h3. Set up *action_mailer* in your production environment in the file *config/en
 
 h2. Credits
 
-Template from https://github.com/RailsApps/rails3-mongoid-devise
+Template from "Rails 3.1 + Mongoid + Devise":https://github.com/RailsApps/rails3-mongoid-devise
 
 h2. Contributing
 
