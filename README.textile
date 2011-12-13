@@ -19,6 +19,10 @@ h3. Set up *action_mailer* in your production environment in the file *config/en
 @config.action_mailer.raise_delivery_errors = false@
 @config.action_mailer.default :charset => "utf-8"@
 
+h2. Credits
+
+Template from https://github.com/RailsApps/rails3-mongoid-devise
+
 h2. Contributing
 
 If you make improvements to this application, please share with others.
