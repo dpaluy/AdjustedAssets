@@ -14,8 +14,7 @@
     .topbar
       .fill
         .container
-          .brand
-            = link_to "Adjusted Assets", root_path
+          = link_to "Adjusted Assets", root_path, :class => 'brand'
           
           = render 'shared/navigation'
   
@@ -24,8 +23,8 @@
             
     .container
       .content
-        - if show_title?
-          .page-header
+        .page-header
+          - if show_title?
             %h1= content_for?(:title) ? yield(:title) : ""
         .row          
           .span14
