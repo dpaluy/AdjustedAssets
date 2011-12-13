@@ -50,3 +50,6 @@ group :test do
   gem "launchy", ">= 2.0.5", :group => :test
 end
 
+gem "heroku"
+gem "thin"
+
