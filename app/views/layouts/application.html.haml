@@ -1,4 +1,4 @@
-!!!
+!!! 5
 %html
   %head
     %title= content_for?(:title) ? yield(:title) : "Adjusted Assets"
@@ -17,15 +17,14 @@
           = link_to "Adjusted Assets", root_path, :class => 'brand'
           
           = render 'shared/navigation'
-  
-          - flash.each do |name, msg|
-            = content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String)
             
     .container
       .content
         .page-header
           - if show_title?
             %h1= content_for?(:title) ? yield(:title) : ""
+          - flash.each do |name, msg|
+            = content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String)
         .row          
           .span14
             = yield
