@@ -1,0 +1,14 @@
+= simple_form_for(@setting) do |f|
+  = f.error_notification
+
+  .inputs
+    = f.input :name
+    = f.input :multiplier
+    = f.input :stock_fee
+    = f.input :option_fee
+    = f.input :supplement_cost
+    = f.input :asset_adjustment
+    = f.input :points_to_rehedge
+
+  .actions
+    = f.button :submit

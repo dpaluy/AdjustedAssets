@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @setting.name
+%p
+  %b Multiplier:
+  = @setting.multiplier
+%p
+  %b Stock fee:
+  = @setting.stock_fee
+%p
+  %b Option fee:
+  = @setting.option_fee
+%p
+  %b Supplement cost:
+  = @setting.supplement_cost
+%p
+  %b Asset adjustment:
+  = @setting.asset_adjustment
+%p
+  %b Points to rehedge:
+  = @setting.points_to_rehedge
+
+= link_to 'Edit', edit_setting_path(@setting)
+\|
+= link_to 'Back', settings_path

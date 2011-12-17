@@ -1,0 +1,31 @@
+%h1 Listing settings
+
+%table
+  %tr
+    %th Name
+    %th Multiplier
+    %th Stock fee
+    %th Option fee
+    %th Supplement cost
+    %th Asset adjustment
+    %th Points to rehedge
+    %th
+    %th
+    %th
+
+  - @settings.each do |setting|
+    %tr
+      %td= setting.name
+      %td= setting.multiplier
+      %td= setting.stock_fee
+      %td= setting.option_fee
+      %td= setting.supplement_cost
+      %td= setting.asset_adjustment
+      %td= setting.points_to_rehedge
+      %td= link_to 'Show', setting
+      %td= link_to 'Edit', edit_setting_path(setting)
+      %td= link_to 'Destroy', setting, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Setting', new_setting_path

@@ -55,3 +55,4 @@ end
 gem "heroku"
 gem "thin"
 
+gem "mocha", :group => :test
