@@ -50,6 +50,7 @@ group :test do
   gem "cucumber-rails", ">= 1.2.0"
   gem "capybara", ">= 1.1.2"
   gem "launchy", ">= 2.0.5"
+  gem 'pickle'
 end
 
 gem "heroku"

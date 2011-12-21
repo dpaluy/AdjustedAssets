@@ -1,4 +1,4 @@
-%h1 Listing settings
+- title "Listing Settings"
 
 %table
   %tr
@@ -11,21 +11,20 @@
     %th Points to rehedge
     %th
     %th
-    %th
 
   - @settings.each do |setting|
     %tr
-      %td= setting.name
+      %td= link_to setting.name, setting
       %td= setting.multiplier
       %td= setting.stock_fee
       %td= setting.option_fee
       %td= setting.supplement_cost
       %td= setting.asset_adjustment
       %td= setting.points_to_rehedge
-      %td= link_to 'Show', setting
-      %td= link_to 'Edit', edit_setting_path(setting)
-      %td= link_to 'Destroy', setting, :confirm => 'Are you sure?', :method => :delete
+      - if user_signed_in?    
+        %td= link_to 'Edit', edit_setting_path(setting)
+        %td= link_to 'Destroy', setting, :confirm => 'Are you sure?', :method => :delete
 
-%br
-
-= link_to 'New Setting', new_setting_path
+- if user_signed_in?
+  %br
+  = link_to 'New Setting', new_setting_path

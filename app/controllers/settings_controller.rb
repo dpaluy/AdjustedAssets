@@ -1,4 +1,7 @@
 class SettingsController < ApplicationController
+
+  before_filter :authorize, :except => [:index, :show]
+  
   # GET /settings
   # GET /settings.json
   def index

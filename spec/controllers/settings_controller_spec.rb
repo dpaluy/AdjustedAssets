@@ -2,9 +2,11 @@ require 'spec_helper'
 
 describe SettingsController do
 
-  # This should return the minimal set of attributes required to create a valid
-  # Setting. As you add validations to Setting, be sure to
-  # update the return value of this method accordingly.
+  before :each do
+    @user = Factory(:user)
+    sign_in @user 
+  end
+  
   def valid_attributes
     {
       :name => 'TestSettings',
@@ -12,7 +14,7 @@ describe SettingsController do
       :stock_fee => 0.8,
       :option_fee => 2.2,
       :supplement_cost => 1000,
-      :asset_adjustment => 30000,
+      :asset_adjustment => 30,
       :points_to_rehedge => 50
     }
   end
