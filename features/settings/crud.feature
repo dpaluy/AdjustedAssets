@@ -20,15 +20,17 @@ Feature: Settings
     
     Scenario: Not logged in user can't create settings
       Given I am not logged in
-      And I follow "Settings"
+      And default settings exists
+      When I follow "Settings"
       Then I should not see "New Setting"
       And I should not see "Edit"
       And I should not see "Destroy"
       
     Scenario: Not logged in user can't edit settings
       Given I am not logged in
-      And I follow "Settings"
-      Then I should not see "New Setting"
-      And I should not see "Edit"
+      And default setting exists with name "MyTestConfig"
+      When I follow "Settings"
+      And I follow "MyTestConfig"
+      Then I should not see "Edit"
       And I should not see "Destroy"
     

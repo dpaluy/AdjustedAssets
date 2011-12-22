@@ -19,6 +19,7 @@
   %b Points to rehedge:
   = @setting.points_to_rehedge
 
-= link_to 'Edit', edit_setting_path(@setting)
-\|
+- if user_signed_in?
+  = link_to 'Edit', edit_setting_path(@setting)
+  \|
 = link_to 'Back', settings_path

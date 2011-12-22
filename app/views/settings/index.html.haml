@@ -9,8 +9,9 @@
     %th Supplement cost
     %th Asset adjustment
     %th Points to rehedge
-    %th
-    %th
+    - if user_signed_in?   
+      %th
+      %th
 
   - @settings.each do |setting|
     %tr
