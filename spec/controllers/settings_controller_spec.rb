@@ -19,6 +19,12 @@ describe SettingsController do
     }
   end
 
+  def should_be_redirect_if_not_signed_in(&block)
+      sign_out @user
+      yield
+      response.should redirect_to(root_url)
+  end
+
   describe "GET index" do
     it "assigns all settings as @settings" do
       setting = Setting.create! valid_attributes
@@ -40,6 +46,10 @@ describe SettingsController do
       get :new
       assigns(:setting).should be_a_new(Setting)
     end
+    
+    it 'should be redirect if not signed in' do
+      should_be_redirect_if_not_signed_in {get :new}
+    end
   end
 
   describe "GET edit" do
@@ -48,6 +58,12 @@ describe SettingsController do
       get :edit, :id => setting.id
       assigns(:setting).should eq(setting)
     end
+    
+    it 'should be redirect if not signed in' do
+      setting = Setting.create! valid_attributes
+      should_be_redirect_if_not_signed_in {get :edit, :id => setting.id}
+    end
+
   end
 
   describe "POST create" do
@@ -83,6 +99,10 @@ describe SettingsController do
         Setting.any_instance.stub(:save).and_return(false)
         post :create, :setting => {}
         response.should render_template("new")
+      end
+      
+      it 'should be redirect if not signed in' do
+        should_be_redirect_if_not_signed_in {post :create, :setting => {}}
       end
     end
   end
@@ -128,6 +148,12 @@ describe SettingsController do
         put :update, :id => setting.id, :setting => {}
         response.should render_template("edit")
       end
+      
+      it 'should be redirect if not signed in' do
+        setting = Setting.create! valid_attributes
+        should_be_redirect_if_not_signed_in {put :update, :id => setting.id, :setting => {}}
+      end
+
     end
   end
 
@@ -144,6 +170,12 @@ describe SettingsController do
       delete :destroy, :id => setting.id
       response.should redirect_to(settings_url)
     end
+    
+    it 'should be redirect if not signed in' do
+      setting = Setting.create! valid_attributes
+      should_be_redirect_if_not_signed_in {delete :destroy, :id => setting.id}
+    end
+
   end
 
 end
