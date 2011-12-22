@@ -13,3 +13,4 @@ Feature: Edit User
       And I press "Update"
       And I go to the homepage
       Then I should see "User: baz"
+

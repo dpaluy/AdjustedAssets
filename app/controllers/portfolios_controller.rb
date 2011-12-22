@@ -1,4 +1,7 @@
 class PortfoliosController < ApplicationController
+
+  before_filter :authorize, :except => [:index, :show] #TODO Add CanCan
+
   # GET /portfolios
   # GET /portfolios.json
   def index
@@ -81,3 +84,4 @@ class PortfoliosController < ApplicationController
     end
   end
 end
+

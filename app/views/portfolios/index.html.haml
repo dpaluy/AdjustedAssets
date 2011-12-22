@@ -6,20 +6,21 @@
     %th Number of stocks
     %th Cash
     %th Strategy multiplier
-    %th
-    %th
-    %th
+    - if user_signed_in?
+      %th
+      %th
 
   - @portfolios.each do |portfolio|
     %tr
-      %td= portfolio.name
+      %td= link_to portfolio.name, portfolio
       %td= portfolio.number_of_stocks
       %td= preaty_money(portfolio.cash)
       %td= portfolio.strategy_multiplier
-      %td= link_to 'Show', portfolio
-      %td= link_to 'Edit', edit_portfolio_path(portfolio)
-      %td= link_to 'Destroy', portfolio, :confirm => 'Are you sure?', :method => :delete
+      - if user_signed_in?
+        %td= link_to 'Edit', edit_portfolio_path(portfolio)
+        %td= link_to 'Destroy', portfolio, :confirm => 'Are you sure?', :method => :delete
 
-%br
+- if user_signed_in?
+  %br
+  = link_to 'New Portfolio', new_portfolio_path
 
-= link_to 'New Portfolio', new_portfolio_path

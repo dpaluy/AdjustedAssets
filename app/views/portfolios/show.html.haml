@@ -10,6 +10,8 @@
   %b Strategy multiplier:
   = @portfolio.strategy_multiplier
 
-= link_to 'Edit', edit_portfolio_path(@portfolio)
-\|
+- if user_signed_in?
+  = link_to 'Edit', edit_portfolio_path(@portfolio)
+  \|
 = link_to 'Back', portfolios_path
+
