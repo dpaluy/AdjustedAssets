@@ -17,6 +17,7 @@ gem "mongoid", ">= 2.3.3"
 gem "devise", ">= 1.5.0"
 gem "twitter-bootstrap-rails"
 gem "simple_form"
+gem 'money'
 
 gem "rspec-rails", ">= 2.8.0.rc1", :group => [:development, :test]
 group :development do

@@ -1,0 +1,11 @@
+= simple_form_for(@portfolio) do |f|
+  = f.error_notification
+
+  .inputs
+    = f.input :name
+    = f.input :number_of_stocks
+    = f.input :cash
+    = f.input :strategy_multiplier
+
+  .actions
+    = f.button :submit

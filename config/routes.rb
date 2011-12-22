@@ -1,5 +1,7 @@
 AdjustedAssets::Application.routes.draw do
 
+  resources :portfolios
+
   resources :settings
 
   root :to => "home#index"
