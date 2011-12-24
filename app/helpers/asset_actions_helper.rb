@@ -1,0 +1,2 @@
+module AssetActionsHelper
+end

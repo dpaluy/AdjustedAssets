@@ -4,7 +4,8 @@
   .inputs
     = f.input :name
     = f.input :number_of_stocks
-    = f.input :cash
+    = f.input :cash, :hint => Money.default_currency.symbol
+    = f.input :currency, :as => :hidden, :input_html => { :value => Money.default_currency}
     = f.input :strategy_multiplier
 
   .actions

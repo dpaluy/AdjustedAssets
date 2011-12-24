@@ -1,0 +1,9 @@
+= simple_form_for(@asset_action) do |f|
+  = f.error_notification
+
+  .inputs
+    = f.input :quantity
+    = f.input :price
+
+  .actions
+    = f.button :submit

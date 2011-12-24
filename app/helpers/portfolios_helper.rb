@@ -1,6 +1,6 @@
 module PortfoliosHelper
 
   def preaty_money(money)
-    "#{money.symbol}#{money.to_s}"
+    number_to_currency(money.to_f, :unit => money.symbol, :separator => ".", :delimiter => ",", :precision => 2)
   end
 end
