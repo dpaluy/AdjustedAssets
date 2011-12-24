@@ -19,7 +19,7 @@ class AssetAction
   end
 
   def total_cost
-    quantity * price
+    quantity * price.to_f
   end
 
   private
