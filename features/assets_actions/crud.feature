@@ -9,9 +9,9 @@ Feature: Assets Actions
       When I follow "Portfolios"
       And I follow "MyAssetPortfolio"
       And I follow "Assets"
-      And I follow "New Action"
+      And I follow "New Asset Action"
       And I fill in the following:
         | Quantity | 150  |
         | Price    | 1100 |
-      Then I should be redirected to the 'MyAssetPortfolio' page
-      And I should see "Asset was successfully created."
+      And I press "Create"
+      Then I should see "Asset action was successfully created."

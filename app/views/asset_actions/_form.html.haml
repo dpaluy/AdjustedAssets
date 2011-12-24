@@ -1,9 +1,9 @@
-= simple_form_for(@asset_action) do |f|
+= simple_form_for [@portfolio, @asset_action] do |f|
   = f.error_notification
 
   .inputs
     = f.input :quantity
-    = f.input :price
+    = f.input :price, :hint => Money.default_currency.symbol
 
   .actions
     = f.button :submit

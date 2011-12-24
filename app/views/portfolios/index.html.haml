@@ -14,7 +14,7 @@
     %tr
       %td= link_to portfolio.name, portfolio
       %td= portfolio.number_of_stocks
-      %td= preaty_money(portfolio.cash)
+      %td= pretty_money(portfolio.cash)
       %td= portfolio.strategy_multiplier
       - if user_signed_in?
         %td= link_to 'Edit', edit_portfolio_path(portfolio)

@@ -5,7 +5,7 @@ class Portfolio
   field :cash_cents, :type => Integer, :default => 0
   field :currency, :default => Money.default_currency.to_s
   field :strategy_multiplier, :type => Integer, :default => 1
-  embeds_many :assets_actions
+  embeds_many :asset_actions
   
 
   validates :name, :presence => true, :uniqueness => true

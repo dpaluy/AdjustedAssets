@@ -1,4 +1,4 @@
-%h1 Listing asset_actions
+- title "Listing Asset Actions"
 
 %table
   %tr
@@ -6,16 +6,14 @@
     %th Price
     %th
     %th
-    %th
 
   - @asset_actions.each do |asset_action|
     %tr
       %td= asset_action.quantity
-      %td= asset_action.price
-      %td= link_to 'Show', asset_action
-      %td= link_to 'Edit', edit_asset_action_path(asset_action)
-      %td= link_to 'Destroy', asset_action, :confirm => 'Are you sure?', :method => :delete
+      %td= pretty_money(asset_action.price)
+      %td= link_to 'Edit', edit_portfolio_asset_action_path(@portfolio, asset_action)
+      %td= link_to 'Destroy', [@portfolio, asset_action], :confirm => 'Are you sure?', :method => :delete
 
 %br
 
-= link_to 'New Asset action', new_asset_action_path
+= link_to 'New Asset Action', new_portfolio_asset_action_path(@portfolio)

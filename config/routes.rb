@@ -1,6 +1,6 @@
 AdjustedAssets::Application.routes.draw do
 
-  resources :portfolios, :shallow => true do
+  resources :portfolios do
     resources :asset_actions
   end
 
