@@ -1,7 +1,7 @@
 class AssetActionsController < ApplicationController
 
   before_filter :get_portfolio
-  
+
   # GET /asset_actions
   # GET /asset_actions.json
   def index
@@ -72,10 +72,11 @@ class AssetActionsController < ApplicationController
       format.json { head :ok }
     end
   end
-  
+
   private
-  
+
   def get_portfolio
-    @portfolio = Portfolio.find(params[:portfolio_id]) 
+    @portfolio = Portfolio.find(params[:portfolio_id])
   end
 end
+

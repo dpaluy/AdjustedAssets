@@ -2,8 +2,9 @@
   = f.error_notification
 
   .inputs
-    = f.input :quantity
-    = f.input :price, :hint => Money.default_currency.symbol
+    = f.input :quantity, :hint => "number of stocks"
+    = f.input :price, :hint => Money.default_currency.symbol, :label => "Price (per stock)"
 
   .actions
     = f.button :submit
+
