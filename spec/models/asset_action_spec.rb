@@ -7,7 +7,6 @@ describe AssetAction do
     @attr = {
       :quantity => 100,
       :price_cents => 15000000,
-      :currency => "ILS",
     }
   end
 
@@ -24,6 +23,9 @@ describe AssetAction do
     it 'should not create a new instance with price less or equal 0' do
       invalid_asset = @portfolio.asset_actions.create(@attr.merge(:price_cents => 0))
       invalid_asset.should_not be_valid
+      
+      invalid_asset = @portfolio.asset_actions.create(@attr.merge(:price_cents => -1))
+      invalid_asset.should_not be_valid
     end
   end
   
@@ -33,7 +35,7 @@ describe AssetAction do
     end
 
     it "returns price as Money"  do
-     @asset.price.should eql(Money.new(@attr[:price_cents], @attr[:currency]))
+     @asset.price.should eql(Money.new(@attr[:price_cents]))
     end
 
     def update_price(price)

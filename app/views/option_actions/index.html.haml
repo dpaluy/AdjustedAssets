@@ -1,0 +1,25 @@
+- title "Listing Option Actions"
+
+%table
+  %tr
+    %th Call/Put
+    %th Strike
+    %th Expiration Date    
+    %th Quantity
+    %th Price
+    %th
+    %th
+
+  - @option_actions.each do |option_action|
+    %tr
+      %td= call_put_type(option_action)
+      %td= option_action.strike
+      %td= option_action.expiration_date.to_s(:expiration)
+      %td= option_action.quantity
+      %td= option_action.price
+      %td= link_to 'Edit', edit_portfolio_option_action_path(@portfolio, option_action)
+      %td= link_to 'Destroy', [@portfolio, option_action], :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Option Action', new_portfolio_option_action_path(params[:portfolio_id])

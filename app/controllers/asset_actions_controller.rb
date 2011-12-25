@@ -5,7 +5,7 @@ class AssetActionsController < ApplicationController
   # GET /asset_actions
   # GET /asset_actions.json
   def index
-    @asset_actions = @portfolio.asset_actions.all
+    @asset_actions = @portfolio.asset_actions
 
     respond_to do |format|
       format.html # index.html.erb
@@ -36,8 +36,8 @@ class AssetActionsController < ApplicationController
 
     respond_to do |format|
       if @asset_action.save
-        format.html { redirect_to portfolio_asset_actions_url, notice: 'Asset action was successfully created.' }
-        format.json { render json: @asset_action, status: :created, location: @asset_action }
+        format.html { redirect_to portfolio_asset_actions_url(@portfolio), notice: 'Asset action was successfully created.' }
+        format.json { render json: @asset_action, status: :created, location: [@portfolio, @asset_action] }
       else
         format.html { render action: "new" }
         format.json { render json: @asset_action.errors, status: :unprocessable_entity }
@@ -52,7 +52,7 @@ class AssetActionsController < ApplicationController
 
     respond_to do |format|
       if @asset_action.update_attributes(params[:asset_action])
-        format.html { redirect_to portfolio_asset_actions_url, notice: 'Asset action was successfully updated.' }
+        format.html { redirect_to portfolio_asset_actions_url(@portfolio), notice: 'Asset action was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
@@ -68,7 +68,7 @@ class AssetActionsController < ApplicationController
     @asset_action.destroy
 
     respond_to do |format|
-      format.html { redirect_to portfolio_asset_actions_url }
+      format.html { redirect_to portfolio_asset_actions_url(@portfolio) }
       format.json { head :ok }
     end
   end

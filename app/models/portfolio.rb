@@ -6,6 +6,7 @@ class Portfolio
   field :currency, :default => Money.default_currency.to_s
   field :strategy_multiplier, :type => Integer, :default => 1
   embeds_many :asset_actions
+  embeds_many :option_actions
   key :name
 
   validates :name, :presence => true, :uniqueness => true

@@ -65,6 +65,8 @@ GEM
       nokogiri (>= 1.5.0)
     daemons (1.1.4)
     database_cleaner (0.7.0)
+    date_validator (0.6.2)
+      activemodel (>= 3.0.0, < 3.2.0)
     devise (1.5.2)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
@@ -258,6 +260,7 @@ DEPENDENCIES
   coffee-rails (~> 3.1.1)
   cucumber-rails (>= 1.2.0)
   database_cleaner (>= 0.7.0)
+  date_validator
   devise (>= 1.5.0)
   factory_girl_rails (>= 1.4.0)
   guard (>= 0.6.2)

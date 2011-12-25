@@ -13,6 +13,8 @@
 - if user_signed_in?
   = link_to 'Assets', portfolio_asset_actions_path(@portfolio)
   \|
+  = link_to 'Options', portfolio_option_actions_path(@portfolio)
+  \| 
   = link_to 'Edit', edit_portfolio_path(@portfolio)
   \|
 = link_to 'Back', portfolios_path

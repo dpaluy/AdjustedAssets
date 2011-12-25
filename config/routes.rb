@@ -2,6 +2,7 @@ AdjustedAssets::Application.routes.draw do
 
   resources :portfolios do
     resources :asset_actions
+    resources :option_actions
   end
 
   resources :settings
