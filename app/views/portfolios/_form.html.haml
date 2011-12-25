@@ -2,7 +2,8 @@
   = f.error_notification
 
   .inputs
-    = f.input :name
+    - if is_new_object?(params[:action])
+      = f.input :name
     = f.input :number_of_stocks
     = f.input :cash, :hint => Money.default_currency.symbol
     = f.input :currency, :as => :hidden, :input_html => { :value => Money.default_currency}
@@ -10,4 +11,3 @@
 
   .actions
     = f.button :submit
-
