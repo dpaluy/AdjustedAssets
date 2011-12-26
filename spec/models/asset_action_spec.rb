@@ -59,13 +59,30 @@ describe AssetAction do
     end
   end
 
-  describe 'total cost' do
-    before(:each) do
+  describe 'total cost' do  
+    it "should return total cost of stocks" do
       @asset = @portfolio.asset_actions.create!(@attr)
+      @asset.total_cost.should == (@attr[:price_cents] * @attr[:quantity] / 100)  
     end
     
-    it "should return total cost of stocks" do
-      @asset.total_cost.should == (@attr[:price_cents] * @attr[:quantity] / 100)  
+    it 'should return total value on strike - [Long, Decline]' do
+      @asset = @portfolio.asset_actions.create!(@attr)
+      strike = @attr[:price_cents] / 100 - 25
+      @asset.value_on_strike(strike).should == (strike - (@attr[:price_cents] / 100) ) * @attr[:quantity]
+    end
+
+    it 'should return total value on strike - [Short, Decline]' do
+      new_quantity = -250
+      @asset = @portfolio.asset_actions.create!(@attr.merge(:quantity => new_quantity))
+      strike = @attr[:price_cents] / 100 - 25
+      @asset.value_on_strike(strike).should == (strike - (@attr[:price_cents] / 100) ) * new_quantity
+    end
+    
+    it 'should return total value on strike - [Short, Grow]'   do
+      new_quantity = -250
+      @asset = @portfolio.asset_actions.create!(@attr.merge(:quantity => new_quantity))
+      strike = @attr[:price_cents] / 100 + 40
+      @asset.value_on_strike(strike).should == (strike - (@attr[:price_cents] / 100) ) * new_quantity
     end
   end
 end

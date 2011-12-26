@@ -12,6 +12,19 @@ class OptionAction
   validate :price_positive
   validate :expiration_date, :presence => true, :date => { :after => Time.now - 1.year, :before => Time.now + 4.month }
   
+  def expiration_value(current_strike)
+    value = (current_strike - strike) * 100
+    if !is_call?
+      value *= -1 # PUT
+    end
+    value = 0 if (value <= 0)
+    value * quantity
+  end
+   
+  def is_expired?(today)
+    (today >= expiration_date)  
+  end
+  
   def is_call?
     call_put == true  
   end

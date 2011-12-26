@@ -22,6 +22,10 @@ class AssetAction
     quantity * price.to_f
   end
 
+  def value_on_strike(strike)
+    (strike - price.to_f) * quantity
+  end
+  
   private
 
   def quantity_not_zero

@@ -7,7 +7,7 @@ describe OptionAction do
     @attr = {
       :call_put => true,
       :strike => 1100,
-      :quantity => -1,
+      :quantity => 2,
       :price_cents => 10000,
       :expiration_date => Time.now
     }
@@ -28,6 +28,73 @@ describe OptionAction do
     end
   end
 
+  describe 'expiration of options - tools' do
+    before(:each) do
+      @option = @portfolio.option_actions.create!(@attr)
+    end
+    
+    it 'should indicate if expired with given date' do
+      today = @attr[:expiration_date]
+      @option.is_expired?(today).should == true
+      
+      today = @attr[:expiration_date] + 1.day
+      @option.is_expired?(today).should == true
+      
+      today = @attr[:expiration_date] - 1.day
+      @option.is_expired?(today).should == false
+    end
+  end
+  
+  describe 'expiration of options - values' do
+  
+    def expiration_value(expiration_strike, strike, is_call)
+      value = (expiration_strike - strike) * 100
+      value *= -1 if !is_call
+      value    
+    end
+    
+    describe 'value on expiration - CALL' do
+      before(:each) do
+        @option = @portfolio.option_actions.create!(@attr)
+      end
+
+      it 'should return 0 if strike less or equal than option strike' do
+        strike = @attr[:strike]
+        @option.expiration_value(strike).should == 0
+        
+        strike = @attr[:strike] - 1
+        @option.expiration_value(strike).should == 0
+      end
+    
+      it 'should return expiration value while expiration strike is higher' do
+        expiration_strike = @attr[:strike] + 10
+        @option.expiration_value(expiration_strike).should == 
+                    expiration_value(expiration_strike, @option.strike, @option.is_call?) * @option.quantity
+      end
+    end
+    
+    describe 'value on expiration - PUT' do
+      before(:each) do
+        @option = @portfolio.option_actions.create!(@attr.merge(:quantity => -3, :call_put => false))
+      end
+    
+      it 'should return 0 if strike greater or equal than option strike' do
+        strike = @attr[:strike]
+        @option.expiration_value(strike).should == 0
+        
+        strike = @attr[:strike] + 1
+        @option.expiration_value(strike).should == 0
+      end
+    
+      it 'should return expiration value while expiration strike is less' do
+        expiration_strike = @attr[:strike] - 10
+        @option.expiration_value(expiration_strike).should == 
+                    expiration_value(expiration_strike, @option.strike, @option.is_call?) * @option.quantity
+      end
+    end
+    
+  end
+  
   describe 'invalid attributes' do
     it 'should not create a new instance with zero quantity' do
       invalid_option = @portfolio.option_actions.create(@attr.merge(:quantity => 0))
