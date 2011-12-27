@@ -3,9 +3,11 @@
 %table
   %tr
     %th Name
-    %th Number of stocks
+    %th Stocks
+    %th CALL
+    %th PUT
     %th Cash
-    %th Strategy multiplier
+    %th Created at
     - if user_signed_in?
       %th
       %th
@@ -14,8 +16,10 @@
     %tr
       %td= link_to portfolio.name, portfolio
       %td= portfolio.number_of_stocks
+      %td= portfolio.number_of_call_options
+      %td= portfolio.number_of_put_options
       %td= pretty_money(portfolio.cash)
-      %td= portfolio.strategy_multiplier
+      %td= portfolio.created_at
       - if user_signed_in?
         %td= link_to 'Edit', edit_portfolio_path(portfolio)
         %td= link_to 'Destroy', portfolio, :confirm => 'Are you sure?', :method => :delete

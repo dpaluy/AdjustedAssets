@@ -5,9 +5,7 @@ describe PortfoliosController do
   def valid_attributes
     {
       :name => "MyPortfolio",
-      :number_of_stocks => 100,
       :cash_cents => 15000000,
-      :strategy_multiplier => 1,
     }
   end
 

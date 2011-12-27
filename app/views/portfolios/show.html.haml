@@ -4,11 +4,17 @@
   %b Number of stocks:
   = @portfolio.number_of_stocks
 %p
+  %b Number of CALL options:
+  = @portfolio.number_of_call_options
+%p
+  %b Number of PUT options:
+  = @portfolio.number_of_put_options  
+%p
   %b Cash:
   = pretty_money(@portfolio.cash)
 %p
-  %b Strategy multiplier:
-  = @portfolio.strategy_multiplier
+  %b Created at:
+  = @portfolio.created_at
 
 - if user_signed_in?
   = link_to 'Assets', portfolio_asset_actions_path(@portfolio)

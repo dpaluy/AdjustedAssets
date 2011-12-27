@@ -5,10 +5,8 @@ describe Portfolio do
   before(:each) do
     @attr = {
       :name => "MyPortfolio",
-      :number_of_stocks => 100,
       :cash_cents => 15000000,
       :currency => "ILS",
-      :strategy_multiplier => 1,
     }
   end
 
@@ -23,9 +21,7 @@ describe Portfolio do
 
   it "should require all parameters" do
     required_param_missing('name')
-    required_param_missing('number_of_stocks')
     required_param_missing('cash_cents')
-    required_param_missing('strategy_multiplier')
   end
 
   it "should reject duplicate name" do
@@ -63,5 +59,26 @@ describe Portfolio do
       update_cash(cash)
     end
   end
+  
+  describe 'summarize portfolio params' do
+    before(:each) do
+      @portfolio = Portfolio.create!(@attr)
+      (1..5).each { |i| @portfolio.asset_actions.create!(:quantity => i, :price_cents => i*1000 ) }
+      (1..5).each { |i| @portfolio.option_actions.create!(:call_put => true, :quantity => i,
+                                                         :price_cents => i*1000, :strike => i * 100 ) }
+      (1..5).each { |i| @portfolio.option_actions.create!(:call_put => false, :quantity => -i,
+                                                         :price_cents => i*1000, :strike => i * 100 ) }
+    end
+
+    it 'should summarize all assets' do
+      @portfolio.number_of_stocks.should == 15
+    end
+    
+    it 'should summarize all options' do
+      @portfolio.number_of_call_options.should == 15
+      @portfolio.number_of_put_options.should == -15
+    end  
+  end
+  
 end
 

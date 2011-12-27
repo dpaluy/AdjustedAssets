@@ -14,6 +14,7 @@ end
 gem "haml", ">= 3.1.2"
 gem "bson_ext", ">= 1.3.1"
 gem "mongoid", ">= 2.3.3"
+gem "mongoid_dynamic_finder"
 gem "devise", ">= 1.5.0"
 gem "twitter-bootstrap-rails"
 gem "simple_form"

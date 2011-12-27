@@ -2,7 +2,7 @@
   = f.error_notification
 
   .inputs
-    = f.input :call_put, :collection => [["CALL", true], ["PUT", false]], :prompt => "Select Option Type"
+    = f.input :call_put, :label => "CALL/PUT", :collection => [["CALL", true], ["PUT", false]], :prompt => "Select Option Type"
     = f.input :strike, :collection => (900..1300).step(10), :prompt => "Select strike"
     = f.input :quantity, :hint => "number of stocks"
     = f.input :price, :hint => Money.default_currency.symbol, :label => "Price (per stock)"

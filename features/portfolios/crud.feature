@@ -10,7 +10,6 @@ Feature: Portfolio
       And I fill in the following:
         | Name                | MyPortfolio  |
         | Cash                | 150000       |
-        | Strategy multiplier | 1            |
       And I press "Create"
       Then I should see "Portfolio was successfully created."
 
