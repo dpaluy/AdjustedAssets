@@ -55,6 +55,7 @@ group :test do
   gem "capybara", ">= 1.1.2"
   gem "launchy", ">= 2.0.5"
   gem 'pickle'
+  gem 'simplecov'
 end
 
 gem "heroku"
