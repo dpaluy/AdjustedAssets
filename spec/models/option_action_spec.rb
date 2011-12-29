@@ -9,7 +9,7 @@ describe OptionAction do
       :strike => 1100,
       :quantity => 2,
       :price_cents => 10000,
-      :expiration_date => Time.now
+      :expiration_date => Date.today
     }
   end
   

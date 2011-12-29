@@ -5,12 +5,13 @@ class OptionAction
   field :quantity, :type => Integer
   field :price_cents, :type => Integer, :default => 0
   field :currency, :default => Money.default_currency.to_s
-  field :expiration_date, :type => Date, :default => (Time.now + 1.month)
+  field :expiration_date, :type => Date, :default => (Date.today + 1.month)
   embedded_in :portfolio, :inverse_of => :option_actions
 
   validate :quantity_not_zero
   validate :price_positive
-  validate :expiration_date, :presence => true, :date => { :after => Time.now - 1.year, :before => Time.now + 4.month }
+  validate :expiration_date, :presence => true, :date => { :after => Date.today - 1.year, 
+                                                           :before => Date.today + 4.month }
   
   def expiration_value(current_strike)
     value = (current_strike - strike) * 100

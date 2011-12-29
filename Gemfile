@@ -45,6 +45,7 @@ group :development do
   gem "guard-livereload", ">= 0.3.0"
   gem "guard-rspec", ">= 0.4.3"
   gem "guard-cucumber", ">= 0.6.1"
+  gem "em-websocket"
 end
 
 group :test do
