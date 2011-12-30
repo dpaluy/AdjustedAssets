@@ -34,6 +34,13 @@ class Portfolio
     number_of_options(false) || 0
   end
   
+  def value(strike_range)
+    strike_range.step(10).map do |strike|
+      value = asset_actions.inject(0) {|val, a| val + a.value_on_strike(strike)}
+      [strike, value] 
+    end
+  end
+  
   private
   
   def number_of_options(call_put)

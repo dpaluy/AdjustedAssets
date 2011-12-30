@@ -25,3 +25,8 @@
   \|
 = link_to 'Back', portfolios_path
 
+.row
+  #chart
+
+:javascript
+  portfolio_value = #{@portfolio.value(1000..1150)};
