@@ -36,7 +36,9 @@ class Portfolio
   
   def value(strike_range)
     strike_range.step(10).map do |strike|
-      value = asset_actions.inject(0) {|val, a| val + a.value_on_strike(strike)}
+      assets = asset_actions.inject(0) {|val, a| val + a.value_on_strike(strike)}
+      options = option_actions.inject(0) {|val, a| val + a.total_exercise_value(strike)}
+      value = assets + options
       [strike, value] 
     end
   end

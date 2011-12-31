@@ -96,6 +96,11 @@ describe OptionAction do
   end
   
   describe 'invalid attributes' do
+    def required_param_missing(param)
+      no_param_set = @portfolio.option_actions.create(@attr.merge(param => ""))
+      no_param_set.should_not be_valid
+    end
+  
     it 'should not create a new instance with zero quantity' do
       invalid_option = @portfolio.option_actions.create(@attr.merge(:quantity => 0))
       invalid_option.should_not be_valid
@@ -107,7 +112,15 @@ describe OptionAction do
       
       invalid_option = @portfolio.option_actions.create(@attr.merge(:price_cents => -1))
       invalid_option.should_not be_valid
-    end    
+    end
+    
+    it 'should not create a new instance with missing required params' do
+      required_param_missing('quantity')
+      required_param_missing('price_cents')
+      required_param_missing('exercise_date')
+      required_param_missing('strike')
+    end
+    
   end  
   
   describe 'should convert price to/from Money' do

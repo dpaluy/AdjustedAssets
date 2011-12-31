@@ -8,10 +8,14 @@ class OptionAction
   field :exercise_date, :type => Date, :default => (Date.today + 1.month)
   embedded_in :portfolio, :inverse_of => :option_actions
 
+  validates :strike, :quantity, :price_cents, :exercise_date, :presence => true
   validate :quantity_not_zero
   validate :price_positive
-  validate :exercise_date, :presence => true, :date => { :after => Date.today - 1.year, 
-                                                           :before => Date.today + 4.month }
+  validate :exercise_date, :presence => true, :date => { :after => Date.today - 1.year, :before => Date.today + 4.month }
+
+  def total_exercise_value(current_strike)
+    exercise_value(current_strike) - total_cost
+  end
   
   def exercise_value(current_strike)
     value = (current_strike - strike) * 100
@@ -19,7 +23,7 @@ class OptionAction
       value *= -1 # PUT
     end
     value = 0 if (value <= 0)
-    value * quantity
+    value* quantity
   end
    
   def is_expired?(today)
@@ -43,14 +47,14 @@ class OptionAction
   def total_cost
     quantity * price.to_f
   end
-
+  
   private
 
   def quantity_not_zero
-    errors.add(:quantity, "can't be zero!") if (quantity == 0)
+    errors.add(:quantity, "can't be zero!") if quantity.blank? || (quantity == 0)
   end
 
   def price_positive
-    errors.add(:price, "must be positive!") if (price_cents <= 0)
+    errors.add(:price, "must be positive!") if price_cents.blank? || (price_cents <= 0)
   end
 end
