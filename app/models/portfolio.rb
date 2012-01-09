@@ -43,6 +43,12 @@ class Portfolio
     end
   end
   
+  def cost
+    assets = asset_actions.inject(0) {|val, a| val + a.price}
+    options = option_actions.inject(0) {|val, a| val + a.price}
+    assets + options
+  end
+  
   private
   
   def number_of_options(call_put)

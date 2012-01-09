@@ -30,4 +30,11 @@ Feature: Assets Actions
         | Name	           | Stocks | CALL | PUT | Cash	       | 
         | MyAssetPortfolio | 0      |	4    | -1  | ₪150,000.00 | 
 
-        
+    @javascript
+    Scenario: Graph View
+      Given default portfolio exists with name "MyAssetPortfolio" and default asset
+      And I am not logged in
+      When I follow "Portfolios"
+      And I follow "MyAssetPortfolio"
+      Then I should see P&L Chart with current strike
+
