@@ -33,8 +33,12 @@ Then /^I should see P&L Chart with (\d+) strike$/ do |strike|
   end
 end
 
+Given /^current stike is (\d+)$/ do |arg1|
+  @current_strike = arg1
+end
+
 Then /^I should see P&L Chart with current strike$/ do
-  current_strike = 1050
-  step %{I should see P&L Chart with #{current_strike.to_i} strike}
+  @current_strike = 1000 if @current_strike.nil?
+  step %{I should see P&L Chart with #{@current_strike.to_i} strike}
 end
 

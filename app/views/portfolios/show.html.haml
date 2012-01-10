@@ -24,10 +24,16 @@
   = link_to 'Edit', edit_portfolio_path(@portfolio)
   \|
 = link_to 'Back', portfolios_path
-
+    
 .row
   #chart
 
+.row
+  .span5.offset6
+    = link_to image_tag( 'go-previous-icon.png', :alt => "Move chart left", :title => "Move chart left", :class => 'bottom'), portfolio_path(@portfolio, :strike => (@current_strike.to_i - 100))
+    %b= @current_strike
+    = link_to image_tag( 'go-next-icon.png', :alt => "Move chart right", :title => "Move chart right", :class => 'bottom'), portfolio_path(@portfolio, :strike => (@current_strike.to_i + 100))
+
 :javascript
-  portfolio_value = #{@portfolio.value(900..1200)};
+  portfolio_value = #{@portfolio.value(@current_strike.to_i)};
   portfolio_symbol = "#{@portfolio.cash.symbol}"

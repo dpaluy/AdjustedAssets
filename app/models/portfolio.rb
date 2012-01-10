@@ -34,7 +34,13 @@ class Portfolio
     number_of_options(false) || 0
   end
   
-  def value(strike_range)
+  def value(strike)
+    step = 150
+    if strike.class == Fixnum
+      strike_range = (strike-step)..(strike+step) 
+    else
+      strike_range = strike
+    end
     strike_range.step(10).map do |strike|
       assets = asset_actions.inject(0) {|val, a| val + a.value_on_strike(strike)}
       options = option_actions.inject(0) {|val, a| val + a.total_exercise_value(strike)}

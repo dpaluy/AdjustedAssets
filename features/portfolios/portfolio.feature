@@ -33,8 +33,11 @@ Feature: Assets Actions
     @javascript
     Scenario: Graph View
       Given default portfolio exists with name "MyAssetPortfolio" and default asset
+      And current stike is 1100
       And I am not logged in
       When I follow "Portfolios"
       And I follow "MyAssetPortfolio"
       Then I should see P&L Chart with current strike
+      When I press on image "Move chart left"
+      Then I should see P&L Chart with 1000 strike
 
