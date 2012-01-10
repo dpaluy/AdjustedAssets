@@ -158,9 +158,20 @@ describe OptionAction do
       @option = @portfolio.option_actions.create!(@attr)
     end
     
-    it "should return total cost of stocks" do
+    it "should return total cost of options" do
       @option.total_cost.should == (@attr[:price_cents] * @attr[:quantity] / 100)  
     end
   end
   
+  describe 'portfolio update' do
+    it 'should update portfolio cash with total cost' do
+      old_cash = @portfolio.cash
+      cost = Money.new @attr[:quantity] * @attr[:price_cents]
+      @option = @portfolio.option_actions.create!(@attr)
+      @portfolio.cash.should eq(old_cash - cost)
+      old_cash -= cost
+      @option = @portfolio.option_actions.create!(@attr.merge(:quantity => -1*@attr[:quantity]))
+      @portfolio.cash.should eq(old_cash + cost)
+    end
+  end
 end

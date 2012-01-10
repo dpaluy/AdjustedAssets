@@ -8,8 +8,11 @@ module ApplicationHelper
     @show_title
   end
   
-  def pretty_money(money)
-    number_to_currency(money.to_f, :unit => money.symbol, :separator => ".", :delimiter => ",", :precision => 2)
+  def pretty_money(money, precision = 2)
+    unless money.nil?
+      number_to_currency(money.to_f, :unit => money.symbol, :delimiter => ",", 
+              :separator => ".", :precision => precision)
+    end
   end
   
 end

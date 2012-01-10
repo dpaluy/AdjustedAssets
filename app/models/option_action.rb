@@ -45,7 +45,7 @@ class OptionAction
   end
 
   def total_cost
-    quantity * price.to_f
+    Money.new self.quantity * self.price_cents, self.currency
   end
   
   private

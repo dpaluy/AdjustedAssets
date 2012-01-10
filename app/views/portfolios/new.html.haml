@@ -1,5 +1,13 @@
 - title "New Portfolio"
 
-= render 'form'
+= simple_form_for(@portfolio) do |f|
+  = f.error_notification
+
+  .inputs
+    = f.input :name
+    = f.input :initial_investment, :hint => Money.default_currency.symbol
+
+  .actions
+    = f.button :submit
 
 = link_to 'Back', portfolios_path

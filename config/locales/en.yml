@@ -3,3 +3,8 @@
 
 en:
   site_title: "Adjusted Assets"
+  
+  date:
+    formats:
+      long: "%b %d, %Y"
+      short: "%b %d"

@@ -1,7 +1,7 @@
 class Portfolio
   include Mongoid::Document
   field :name
-  field :cash_cents, :type => Integer, :default => 0
+  field :initial_investment, :type => Integer
   field :currency, :default => Money.default_currency.to_s
   field :created_at, :type => Date, :default => Time.now
   embeds_many :asset_actions
@@ -9,17 +9,16 @@ class Portfolio
   key :name
 
   validates :name, :presence => true, :uniqueness => true
-  validates :cash_cents, :presence => true
-
+  validates_numericality_of :initial_investment, :greater_than => 0
+   
   def cash
-    Money.new self.cash_cents, self.currency
+    assets = asset_actions.inject(0) {|val, a| val - a.total_cost.cents}
+    options = option_actions.inject(0) {|val, a| val - a.total_cost.cents}
+    Money.new (100*self.initial_investment) + assets + options, self.currency 
   end
 
-  def cash=(new_value)
-    new_value = new_value.cents if new_value.is_a? Money
-    new_value = new_value.to_f * 100 if [String, Fixnum, Float].include? new_value.class
-
-    self.cash_cents = new_value
+  def initial_money
+    Money.new self.initial_investment*100, self.currency
   end
   
   def number_of_stocks

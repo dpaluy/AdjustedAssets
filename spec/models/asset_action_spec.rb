@@ -85,5 +85,20 @@ describe AssetAction do
       @asset.value_on_strike(strike).should == (strike - (@attr[:price_cents] / 100) ) * new_quantity
     end
   end
+  
+  describe 'portfolio update' do
+    it 'should update portfolio cash with total cost' do
+      old_cash = @portfolio.cash
+      attr = { :quantity => 10, :price_cents => 10000}
+      cost = Money.new attr[:quantity] * attr[:price_cents]
+      @portfolio.asset_actions.create!(attr)
+      @portfolio.cash.should eq(old_cash - cost)
+      old_cash -= cost
+      attr2 = { :quantity => -10, :price_cents => 5000}
+      @portfolio.asset_actions.create!(attr2)
+      cost = Money.new attr2[:quantity] * attr2[:price_cents]
+      @portfolio.cash.should eq(old_cash - cost)
+    end
+  end
 end
 

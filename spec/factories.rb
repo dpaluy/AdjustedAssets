@@ -8,7 +8,7 @@ end
 
 Factory.define :portfolio do |p|
   p.name "MyPortfolio"
-  p.cash_cents 15000000
+  p.initial_investment 150000
   p.currency "ILS"
 end
 
