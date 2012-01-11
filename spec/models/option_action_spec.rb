@@ -49,8 +49,25 @@ describe OptionAction do
   
     def exercise_value(exercise_strike, strike, is_call)
       value = (exercise_strike - strike) * 100
+      value = 0 if (value < 0 && is_call) || (value > 0 && !is_call)
       value *= -1 if !is_call
       value    
+    end
+    
+    describe 'exercise value' do
+      before(:each) do
+        @option = @portfolio.option_actions.create!(@attr)
+      end
+
+      it 'should calculate total value on exercise' do
+        cost = @attr[:quantity] * @attr[:price_cents]
+        ex_val = exercise_value(@attr[:strike] + 10, @attr[:strike], @attr[:call_put])
+        @option.total_exercise_value(@attr[:strike] + 10).should == 
+                Money.new(100 * @attr[:quantity] * ex_val - cost)
+        ex_val = exercise_value(@attr[:strike] - 10, @attr[:strike], @attr[:call_put])                
+        @option.total_exercise_value(@attr[:strike] - 10).should == 
+                Money.new(100 * @attr[:quantity] * ex_val - cost)
+      end
     end
     
     describe 'value on exercise - CALL' do

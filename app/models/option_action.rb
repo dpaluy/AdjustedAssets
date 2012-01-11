@@ -14,7 +14,7 @@ class OptionAction
   validate :exercise_date, :presence => true, :date => { :after => Date.today - 1.year, :before => Date.today + 4.month }
 
   def total_exercise_value(current_strike)
-    exercise_value(current_strike) - total_cost
+    Money.new(exercise_value(current_strike) * 100) - total_cost
   end
   
   def exercise_value(current_strike)
@@ -47,6 +47,10 @@ class OptionAction
   def total_cost
     Money.new self.quantity * self.price_cents, self.currency
   end
+
+  def to_s
+    "#{self.quantity} #{is_call? ? 'C':'P'}#{self.strike} #{(self.exercise_date.to_s(:expiration)).gsub(' ', '')}"  
+  end
   
   private
 
@@ -56,5 +60,5 @@ class OptionAction
 
   def price_positive
     errors.add(:price, "must be positive!") if price_cents.blank? || (price_cents <= 0)
-  end
+  end  
 end

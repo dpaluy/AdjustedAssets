@@ -13,8 +13,11 @@ class AssetAction
   end
 
   def price=(new_value)
-    new_value = new_value.cents if new_value.is_a? Money
-    new_value = new_value.to_f * 100 if [String, Fixnum, Float].include? new_value.class
+    if new_value.is_a? Money
+      new_value = new_value.cents 
+    else
+      new_value = new_value.to_f * 100 if [String, Fixnum, Float].include? new_value.class
+    end
     self.price_cents = new_value
   end
 

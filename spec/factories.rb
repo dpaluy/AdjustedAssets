@@ -1,8 +1,8 @@
 require 'factory_girl'
 
 Factory.define :user do |u|
-  u.name 'Test User'
-  u.email 'user@test.com'
+  u.sequence(:name) { |n| "foo#{n}" } 
+  u.sequence(:email) { |n| "foo#{n}@example.com" }
   u.password 'please'
 end
 

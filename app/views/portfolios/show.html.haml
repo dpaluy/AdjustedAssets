@@ -30,7 +30,8 @@
 
 .row
   .span5.offset6
-    = link_to image_tag( 'go-previous-icon.png', :alt => "Move chart left", :title => "Move chart left", :class => 'bottom'), portfolio_path(@portfolio, :strike => (@current_strike.to_i - 100))
+    - if (@current_strike.to_i - 100) > 0
+      = link_to image_tag( 'go-previous-icon.png', :alt => "Move chart left", :title => "Move chart left", :class => 'bottom'), portfolio_path(@portfolio, :strike => (@current_strike.to_i - 100))
     %b= @current_strike
     = link_to image_tag( 'go-next-icon.png', :alt => "Move chart right", :title => "Move chart right", :class => 'bottom'), portfolio_path(@portfolio, :strike => (@current_strike.to_i + 100))
 
