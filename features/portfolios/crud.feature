@@ -9,7 +9,7 @@ Feature: Portfolio
       And I follow "New Portfolio"
       And I fill in the following:
         | Name                | MyPortfolio  |
-        | Cash                | 150000       |
+        | Initial investment  | 150000       |
       And I press "Create"
       Then I should see "Portfolio was successfully created."
 

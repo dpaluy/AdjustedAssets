@@ -1,7 +1,7 @@
 def valid_attributes
   {
     :name => "MyPortfolio",
-    :cash_cents => 15000000,
+    :initial_investment => 150000,
   }
 end
 

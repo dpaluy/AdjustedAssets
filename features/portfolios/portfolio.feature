@@ -13,8 +13,8 @@ Feature: Assets Actions
       And I am not logged in
       When I follow "Portfolios"
       Then I should see the following table rows
-        | Name	           | Stocks | CALL | PUT | Cash	       | 
-        | MyAssetPortfolio | 54     |	0    | 0   | ₪150,000.00 | 
+        | Name	           | Stocks | CALL | PUT | Initial Investment | Cash	  | 
+        | MyAssetPortfolio | 54     |	0    | 0   | ₪150,000           | ₪99,000 |
 
     Scenario: Summarize total number of options
       Given default portfolio exists with name "MyAssetPortfolio" and options
@@ -27,8 +27,8 @@ Feature: Assets Actions
       And I am not logged in
       When I follow "Portfolios"
       Then I should see the following table rows
-        | Name	           | Stocks | CALL | PUT | Cash	       | 
-        | MyAssetPortfolio | 0      |	4    | -1  | ₪150,000.00 | 
+        | Name	           | Stocks | CALL | PUT | Initial Investment | Cash	   | 
+        | MyAssetPortfolio | 0      |	4    | -1  | ₪150,000           | ₪146,250 |
 
     @javascript
     Scenario: Graph View
