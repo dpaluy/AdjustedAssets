@@ -18,12 +18,12 @@ Feature: Assets Actions
 
     Scenario: Summarize total number of options
       Given default portfolio exists with name "MyAssetPortfolio" and options
-        | Call Put | Strike | Quantity | Price | Expiration Date |
-        | true     | 1000   | 1        | 1250  | 2010-01-31      |
-        | true     | 1010   | -2       | 1200  | 2010-01-31      |
-        | false    | 1020   | 3        | 1240  | 2010-01-31      |
-        | false    | 1030   | -4       | 1230  | 2010-01-31      |
-        | true     | 1040   | 5        | 1220  | 2010-01-31      |
+        | Call Put | Strike | Quantity | Price | Exercise Date |
+        | true     | 1000   | 1        | 1250  | 2010-01-31    |
+        | true     | 1010   | -2       | 1200  | 2010-01-31    |
+        | false    | 1020   | 3        | 1240  | 2010-01-31    |
+        | false    | 1030   | -4       | 1230  | 2010-01-31    |
+        | true     | 1040   | 5        | 1220  | 2010-01-31    |
       And I am not logged in
       When I follow "Portfolios"
       Then I should see the following table rows

@@ -5,13 +5,13 @@ class OptionAction
   field :quantity, :type => Integer
   field :price_cents, :type => Integer, :default => 0
   field :currency, :default => Money.default_currency.to_s
-  field :exercise_date, :type => Date, :default => (Date.today + 1.month)
+  field :exercise_date, :type => Date
   embedded_in :portfolio, :inverse_of => :option_actions
 
   validates :strike, :quantity, :price_cents, :exercise_date, :presence => true
   validate :quantity_not_zero
   validate :price_positive
-  validate :exercise_date, :presence => true, :date => { :after => Date.today - 1.year, :before => Date.today + 4.month }
+  validate :exercise_date, :date => { :after => Date.today - 1.year, :before => Date.today + 4.month }
 
   def total_exercise_value(current_strike)
     Money.new(exercise_value(current_strike) * 100) - total_cost

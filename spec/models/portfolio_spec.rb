@@ -54,8 +54,10 @@ describe Portfolio do
     
     it 'should summarize all options' do
       (1..5).each { |i| @portfolio.option_actions.create!(:call_put => true, :quantity => i,
+                                                         :exercise_date => Date.today,
                                                          :price_cents => i*1000, :strike => @cents * ((i*10) + 100)) }
       (1..5).each { |i| @portfolio.option_actions.create!(:call_put => false, :quantity => -i,
+                                                         :exercise_date => Date.today,
                                                          :price_cents => i*1000, :strike => @cents * ((i*10) + 100 )) }
     
       @portfolio.number_of_call_options.should == 15
@@ -82,7 +84,7 @@ describe Portfolio do
     
     it 'should calculate total value of all options' do
       (1..5).each { |i| @portfolio.option_actions.create!(:call_put => true, :quantity => i,
-                                                   :price_cents => i*1000, :strike => ((i*10) + 100)) }
+                                :exercise_date => Date.today, :price_cents => i*1000, :strike => ((i*10) + 100)) }
       strike = 140
       @portfolio.value(strike).should == [[0, -550], [10, -550], [20, -550], [30, -550], [40, -550], [50, -550], [60, -550], [70, -550], [80, -550], [90, -550], [100, -550], [110, -550], [120, 450], [130, 3450], [140, 9450], [150, 19450], [160, 34450], [170, 49450], [180, 64450], [190, 79450], [200, 94450], [210, 109450], [220, 124450], [230, 139450], [240, 154450], [250, 169450], [260, 184450], [270, 199450], [280, 214450], [290, 229450]]
       

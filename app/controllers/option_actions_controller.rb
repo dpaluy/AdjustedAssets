@@ -49,7 +49,6 @@ class OptionActionsController < ApplicationController
   # PUT portfolios/1/option_actions/1.xml
   def update
     @option_action = @portfolio.option_actions.find(params[:id])
-
     respond_to do |format|
       if @option_action.update_attributes(params[:option_action])
         format.html { redirect_to(portfolio_option_actions_url(@portfolio), :notice => 'Option action was successfully updated.') }

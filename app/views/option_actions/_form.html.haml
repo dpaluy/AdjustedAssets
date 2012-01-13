@@ -7,8 +7,8 @@
     = f.input :quantity, :hint => "number of stocks"
     = f.input :price, :hint => Money.default_currency.symbol, :label => "Price (per stock)"
     = f.input :exercise_date, :as => :date, :start_year => Date.today.year - 1,
-                                :end_year => Date.today.year + 1, :discard_day => true,
-                                :order => [:month, :year]
+                                :end_year => Date.today.year + 1,
+                                :order => [:day, :month, :year]
     
   .actions
     = f.button :submit
