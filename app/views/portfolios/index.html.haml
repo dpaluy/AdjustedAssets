@@ -15,11 +15,12 @@
 
   - @portfolios.each do |portfolio|
     %tr
-      %td= link_to portfolio.name, portfolio
-      %td= portfolio.number_of_stocks
-      %td= portfolio.number_of_call_options
-      %td= portfolio.number_of_put_options
-      %td= pretty_money(portfolio.initial_money, 0)
+      %td= portfolio.inspect
+      /%td= link_to portfolio.name, portfolio
+      /%td= portfolio.number_of_stocks
+      /%td= portfolio.number_of_call_options
+      /%td= portfolio.number_of_put_options
+      /%td= pretty_money(portfolio.initial_money, 0)
       %td= pretty_money(portfolio.cash, 0)
       %td= l portfolio.created_at, :format => :long
       - if user_signed_in?
