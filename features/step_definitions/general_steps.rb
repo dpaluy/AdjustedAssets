@@ -37,6 +37,17 @@ When /^I fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
   fill_in(field, :with => value)
 end
 
+When /^I select "([^"]*)" in "([^"]*)"$/ do |value, field|
+  select(value, :from => field)
+end
+
+When /^I select the following:$/ do |table|
+  # table is a Cucumber::Ast::Table
+  table.rows_hash.each do |key, value|
+    select(value, :from => key)
+  end
+end
+
 When /^I go to the homepage$/ do
   visit '/'
 end

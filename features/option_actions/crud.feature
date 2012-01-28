@@ -11,10 +11,11 @@ Feature: Option Actions
       And I follow "Options"
       And I follow "New Option Action"
       And I fill in the following:
-        | CALL/PUT   | CALL |
-        | Strike     | 1000 |
-        | Quantity   | 5    |                      
+        | Quantity   | 5    |
         | Price      | 1100 |
-        | Exercise date | Date.today.strftime("%m %Y") |        
+      And I select the following:
+        | Strike     | 1000 |        
+        | Exercise date | Jan 12 |
+        | CALL/PUT   | CALL |      
       And I press "Create"
       Then I should see "Option action was successfully created."
