@@ -5,6 +5,7 @@ require "#{Rails.root}/lib/invest/data_loader"
 desc "Test investment"
 task :test_invest do
   asset_values = DataLoader.get_all_asset_values 
+  volatilities = DataLoader.get_all_volatility_values
   strike = asset_values[0][0]
   portfolio = Portfolio.where(name: 'TA25').first
   settings = Setting.where(name: 'TA25').first
