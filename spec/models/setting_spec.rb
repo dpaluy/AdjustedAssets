@@ -8,8 +8,8 @@ describe Setting do
       :multiplier => 100,
       :stock_fee => 0.8,
       :option_fee => 2.2,
-      :supplement_cost => 1000,
-      :asset_adjustment => 30000,
+      :supplement_stock => 1,
+      :asset_adjustment => 30, #%
       :points_to_rehedge => 50
     }
   end
@@ -28,7 +28,7 @@ describe Setting do
     required_param_missing('multiplier')
     required_param_missing('stock_fee')
     required_param_missing('option_fee')
-    required_param_missing('supplement_cost')
+    required_param_missing('supplement_stock')
     required_param_missing('asset_adjustment')
     required_param_missing('points_to_rehedge')
   end

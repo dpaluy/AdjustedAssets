@@ -13,7 +13,7 @@ describe SettingsController do
       :multiplier => 100,
       :stock_fee => 0.8,
       :option_fee => 2.2,
-      :supplement_cost => 1000,
+      :supplement_stock => 1,
       :asset_adjustment => 30,
       :points_to_rehedge => 50
     }

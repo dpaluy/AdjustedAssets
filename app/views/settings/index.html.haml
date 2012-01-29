@@ -6,7 +6,7 @@
     %th Multiplier
     %th Stock fee
     %th Option fee
-    %th Supplement cost
+    %th Supplement stock
     %th Asset adjustment
     %th Points to rehedge
     - if user_signed_in?   
@@ -19,7 +19,7 @@
       %td= setting.multiplier
       %td= setting.stock_fee
       %td= setting.option_fee
-      %td= setting.supplement_cost
+      %td= setting.supplement_stock
       %td= setting.asset_adjustment
       %td= setting.points_to_rehedge
       - if user_signed_in?    
