@@ -5,6 +5,7 @@ module DataLoader
   @values = "/assets/1091826/values.json"
   @volatility = "/volatilities/4f1fee0e9708990003000026/vol_values.json"
   @http = Net::HTTP.new(@hostURL)
+  @options = "/assets/1091826/options"
   
   def self.get_all_asset_values
     request = Net::HTTP::Get.new(@values)
@@ -26,5 +27,9 @@ module DataLoader
       [r["value"]/100, Date.parse(r["timestamp"])]
     end
     list    
+  end
+  
+  def get_options(exp)
+    
   end
 end
