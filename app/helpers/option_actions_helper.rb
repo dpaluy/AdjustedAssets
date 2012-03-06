@@ -9,6 +9,6 @@ module OptionActionsHelper
   
   def expiration_dates
     exp_list = YAML::load(File.open("#{Rails.root}/config/expirations.yml"))
-    collection = exp_list["TA25"].map {|d| [d.to_s(:expiration), d.to_s]}
+    collection = exp_list["TA25"].select{|d| d >= Date.today }.map {|d| [d.to_s(:expiration), d.to_s]}
   end
 end
