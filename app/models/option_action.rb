@@ -1,7 +1,8 @@
 class OptionAction
   include Mongoid::Document
-  include Mongoid::MultiParameterAttributes  
-  
+  include Mongoid::MultiParameterAttributes
+  include Mongoid::Timestamps::Created
+
   field :call_put, :type => Boolean, :default => true
   field :strike, :type => Integer
   field :quantity, :type => Integer

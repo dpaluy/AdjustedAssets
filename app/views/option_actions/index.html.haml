@@ -1,7 +1,15 @@
 - title "Listing Option Actions"
 
+
+%br
+= link_to 'New Option Action', new_portfolio_option_action_path(params[:portfolio_id])
+|
+= link_to 'Portfolio', portfolio_path(@portfolio)
+%br
+%br
 %table
   %tr
+    %th Time Stamp
     %th Call/Put
     %th Strike
     %th Exercise Date    
@@ -12,6 +20,7 @@
 
   - @option_actions.each do |option_action|
     %tr
+      %td= option_action.created_at.to_s(:time_stamp)
       %td= call_put_type(option_action)
       %td= option_action.strike
       %td= option_action.exercise_date.to_s(:expiration)

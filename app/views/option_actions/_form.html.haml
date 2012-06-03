@@ -3,7 +3,7 @@
 
   .inputs
     = f.input :call_put, :label => "CALL/PUT", :collection => [["CALL", true], ["PUT", false]], :prompt => "Select Option Type"
-    = f.input :strike, :collection => (900..1300).step(10), :prompt => "Select strike"
+    = f.input :strike, :collection => (800..1300).step(10), :selected => 1000
     = f.input :quantity, :hint => "number of stocks"
     = f.input :price, :hint => Money.default_currency.symbol, :label => "Price (per stock)"
     = f.input :exercise_date, :collection => expiration_dates, :prompt => "Select Expiration", :selected => expiration_dates.first
