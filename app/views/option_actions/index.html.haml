@@ -20,7 +20,7 @@
 
   - @option_actions.each do |option_action|
     %tr
-      %td= option_action.created_at.to_s(:time_stamp)
+      %td= option_action.created_at.to_s(:time_stamp) unless option_action.created_at.blank?
       %td= call_put_type(option_action)
       %td= option_action.strike
       %td= option_action.exercise_date.to_s(:expiration)
