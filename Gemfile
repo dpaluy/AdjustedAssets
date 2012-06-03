@@ -21,6 +21,10 @@ gem "simple_form"
 gem 'money'
 gem 'date_validator'
 
+group :production do
+  gem 'newrelic_rpm'
+end
+
 gem "rspec-rails", ">= 2.8.0.rc1", :group => [:development, :test]
 group :development do
 #  gem 'nested_scaffold', :git => 'git://github.com/dpaluy/nested_scaffold.git'
